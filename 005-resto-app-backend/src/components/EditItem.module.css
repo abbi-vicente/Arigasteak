@@ -1,0 +1,19 @@
+label {
+	margin-right: 2vh;
+	display: flex;
+	justify-content: center;
+}
+.submitBtn,
+.cancelBtn {
+	border-radius: 100px;
+	border: none;
+	font-size: 1.5vh;
+	background: rgb(235, 124, 83);
+	cursor: pointer;
+	height: 2vh;
+	width: 6vh;
+	overflow: hidden;
+	transition: transform 0.1s;
+	z-index: 1;
+	margin: 1.5vh 0.25vh 1.5vh 0.25vh;
+}

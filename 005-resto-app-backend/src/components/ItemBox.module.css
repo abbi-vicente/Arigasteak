@@ -1,0 +1,153 @@
+/* item box and cart items */
+.Item {
+	border: darkgrey 1px solid;
+	display: flex;
+	height: 100%;
+	width: 30%;
+	flex-wrap: wrap;
+	padding: 10px;
+}
+.itemImage {
+	width: 200px;
+	height: 200px;
+}
+.itemDetails {
+	margin: 2vh 0 0 5vh;
+	width: 150px;
+	height: 150px;
+}
+.addToCartBtn,
+.editBtn,
+.deleteBtn,
+.decrementBtn,
+.incrementBtn,
+.removeBtn {
+	border-radius: 100px;
+	border: none;
+	font-size: 1.5vh;
+	background: rgb(235, 124, 83);
+	cursor: pointer;
+	height: 2vh;
+	width: 10vh;
+	overflow: hidden;
+	transition: transform 0.1s;
+	z-index: 1;
+}
+.editBtn,
+.deleteBtn {
+	margin: 1vh 0.25vh;
+	width: 5.5vh;
+}
+.decrementBtn,
+.incrementBtn {
+	width: 2vh;
+}
+.removeBtn {
+	font-size: 1.25vh;
+	width: 12vh;
+}
+.addToCartBtn:hover,
+.decrementBtn:hover,
+.incrementBtn:hover {
+	transform: scale(1.1);
+}
+.editBtn:hover,
+.deleteBtn:hover,
+.removeBtn:hover {
+	background-color: rgb(188, 100, 68);
+}
+/* cart items */
+.qtyBtns {
+	margin-top: 0.75vh;
+}
+.subTotal {
+	font-size: 1.25vh;
+	margin-top: 2vh;
+}
+/* new item box */
+.EditForm {
+	margin-top: 1.5vh;
+}
+/* filter cart items */
+.category {
+	margin-top: 10vh;
+}
+
+/* mobile responsiveness */
+@media only screen and (min-width: 320px) and (max-width: 575px) {
+	.itemImage {
+		width: 150px;
+		height: 150px;
+		display: flex;
+		margin-left: 3vh;
+	}
+	.Item {
+		height: 300px;
+		width: 200px;
+	}
+
+	.itemDetails {
+		margin: 2vh 2vh 0 3vh;
+		width: 150px;
+		height: 150px;
+	}
+}
+
+/* Laptop */
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+	.itemImage {
+		width: 250px;
+		height: 250px;
+	}
+	.Item {
+		height: 250px;
+		width: 500px;
+	}
+	.itemDetails {
+		margin: 3vh 0 0 5.5vh;
+		font-size: 2vh;
+	}
+	.addToCartBtn,
+	.editBtn,
+	.deleteBtn {
+		font-size: 1.75vh;
+		height: 2.5vh;
+		width: 12vh;
+	}
+	.editBtn,
+	.deleteBtn {
+		font-size: 1.5vh;
+		width: 6vh;
+	}
+}
+
+/* Big Screen */
+@media only screen and (min-width: 2560px) {
+	.itemImage {
+		width: 350px;
+		height: 350px;
+	}
+	.Item {
+		height: 350px;
+		width: 600px;
+	}
+	.itemDetails {
+		margin: 2vh 0 0 5vh;
+		width: 150px;
+		height: 150px;
+		font-size: 1.75vh;
+	}
+	.addToCartBtn,
+	.editBtn,
+	.deleteBtn {
+		font-size: 1.5vh;
+		height: 2vh;
+		width: 10vh;
+	}
+	.editBtn,
+	.deleteBtn {
+		font-size: 1.25vh;
+		margin-top: 1vh;
+		width: 4.5vh;
+	}
+}

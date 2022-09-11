@@ -1,0 +1,155 @@
+* {
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+}
+.App {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+.ItemList,
+.Item {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 1vh;
+}
+Header {
+	width: 100%;
+	height: 7vh;
+	top: 0;
+	position: fixed;
+	border-bottom: 1px solid rgb(235, 124, 83);
+	background-color: rgb(35, 30, 31);
+	line-height: 7vh;
+}
+nav {
+	margin-left: 60vh;
+}
+a {
+	margin: 0 2vh 0 2vh;
+	text-decoration: none;
+	color: rgb(235, 124, 83);
+}
+header {
+	display: flex;
+}
+header h2 {
+	margin: 0 0 0 120vh;
+	position: fixed;
+	align-self: flex-end;
+	color: #eee;
+}
+header h1 {
+	margin: 0 0 15vh 5vh;
+	text-decoration: none;
+	color: #eee;
+}
+.EditForm {
+	margin-top: 15vh;
+}
+.menu {
+	margin-top: 15vh;
+}
+.filter,
+.cart {
+	margin-top: 10vh;
+}
+.home {
+	margin-bottom: 0;
+}
+.AddItemBtn {
+	border-radius: 100px;
+	border: none;
+	font-size: 1.5vh;
+	background: rgb(235, 124, 83);
+	cursor: pointer;
+	height: 2vh;
+	width: 12vh;
+	overflow: hidden;
+	transition: transform 0.1s;
+	z-index: 1;
+}
+.AddItemBtn:hover {
+	transform: scale(1.1);
+}
+footer {
+	color: rgb(207, 197, 197);
+	background-color: rgb(35, 30, 31);
+	align-items: center;
+	text-align: center;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+	font-size: 1.5vh;
+	bottom: 0;
+	position: fixed;
+	width: 100%;
+}
+footer a {
+	text-decoration: underline;
+	decoration: none;
+	color: rgb(235, 124, 83);
+}
+
+/* mobile responsiveness */
+@media only screen and (min-width: 320px) and (max-width: 575px) {
+	nav {
+		margin-left: 4vh;
+	}
+	a {
+		margin: 0 0.5vh 0 0.5vh;
+		font-size: 1vh;
+	}
+	header h2 {
+		margin-left: 28vh;
+		font-size: 1vh;
+	}
+	header h1 {
+		margin-left: 0.5vh;
+		font-size: 1.5vh;
+	}
+}
+
+/* tablet */
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+	header h1 {
+		margin-left: 1vh;
+		font-size: 3vh;
+	}
+	header h2 {
+		margin-left: 65vh;
+		font-size: 1.5vh;
+	}
+	nav {
+		margin-left: 15vh;
+		font-size: 1.25vh;
+	}
+}
+/* Laptop Small*/
+@media only screen and (min-width: 1024px) {
+	header h2 {
+		margin-left: 80vh;
+	}
+	nav {
+		margin-left: 20vh;
+	}
+}
+
+/* Laptop Big*/
+@media only screen and (min-width: 1440px) {
+	header h2 {
+		margin-left: 180vh;
+	}
+	nav {
+		margin-left: 64vh;
+	}
+}
+
+/* Big Screen */
+@media only screen and (min-width: 2560px) {
+	header h2 {
+		margin-left: 150vh;
+	}
+}
