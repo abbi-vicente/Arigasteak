@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styles from "./EditItem.module.css";
+import axios from "axios";
 
 const EditItemForm = ({details, hideEditItemForm, dispatch}) => {
 	const [editItem, setEditItem] = useState({
@@ -43,21 +44,35 @@ const EditItemForm = ({details, hideEditItemForm, dispatch}) => {
 		}
 	};
 
+	// how to change in json file huhu
 	const onEditItem = (e) => {
 		e.preventDefault();
-		dispatch({
-			type: "SAVE_CHANGES",
-			payload: {...editItem},
-		});
+		axios.put(`http://localhost:8000/menu/${editItem.id}`, editItem).then((response) => {
+			console.log(response);
+			dispatch({
+				type: "SAVE_CHANGES",
+				payload: {...editItem},
+			});
+			setEditItem("");
+			hideEditItemForm(false);
 
-		setEditItem("");
-		hideEditItemForm(false);
+			axios.put(`http://localhost:8000/cart/${editItem.id}`, editItem).then((response) => {
+				console.log(response);
+				dispatch({
+					type: "SAVE_CHANGES",
+					payload: {...editItem},
+				});
+				setEditItem("");
+				hideEditItemForm(false);
+			});
+		});
 	};
 
 	const hideForm = (e) => {
 		e.preventDefault();
 		hideEditItemForm(false);
 	};
+
 	return (
 		<div className="EditForm">
 			<form>

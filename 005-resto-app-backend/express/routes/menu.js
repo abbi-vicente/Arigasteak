@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 // const controller = require("../constrollers/items.controller");
 
-const menuFile = "./data.json";
+const menuFile = "./menu.json";
 const menuFilePath = path.resolve(__dirname, menuFile);
 const cartFile = "./cart.json";
 const cartFilePath = path.resolve(__dirname, cartFile);
@@ -26,22 +26,26 @@ router.get("/:id", (request, response) => {
 });
 
 router.post("/", (request, response) => {
-	const itemsList = JSON.parse(fs.readFileSync(menuFilePath));
+	try {
+		const itemsList = JSON.parse(fs.readFileSync(menuFilePath));
 
-	const newItem = {
-		id: uuidv4(),
-		name: request.body.name,
-		price: request.body.price,
-		category: request.body.category,
-		image: request.body.image,
-	};
+		const newItem = {
+			id: uuidv4(),
+			name: request.body.name,
+			price: request.body.price,
+			category: request.body.category,
+			image: request.body.image,
+		};
 
-	// push/add to existing items
-	itemsList.push(newItem);
-	// write to json file
-	fs.writeFileSync(menuFilePath, JSON.stringify(itemsList, null, 2));
+		// push/add to existing items
+		itemsList.push(newItem);
+		// write to json file
+		fs.writeFileSync(menuFilePath, JSON.stringify(itemsList, null, 2));
 
-	response.status(201).send();
+		response.status(201).send();
+	} catch (err) {
+		response.send(err.message);
+	}
 });
 
 router.put("/:id", (request, response) => {

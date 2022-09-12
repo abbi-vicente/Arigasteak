@@ -79,13 +79,13 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		axios.get("http://localhost:8080/menu", state.items).then((response) => {
-			console.log(response);
+		axios.get("http://localhost:8000/menu", state.items).then((response) => {
+			// console.log(response);
 			dispatch({type: "LOAD_ITEMS", payload: response.data});
 		});
-		axios.get("http://localhost:8080/cart", state.cartItem).then((response) => {
-			console.log(response);
-			dispatch({type: "ADD_TO_CART)", payload: response.data});
+		axios.get("http://localhost:8000/cart", state.cartItem).then((response) => {
+			// console.log(response);
+			dispatch({type: "LOAD_CART", payload: response.data});
 		});
 	}, []);
 
@@ -95,6 +95,12 @@ const App = () => {
 				return {
 					...state,
 					items: action.payload,
+				};
+			}
+			case "LOAD_CART": {
+				return {
+					...state,
+					cartItem: action.payload,
 				};
 			}
 			case "ADD_ITEM": {

@@ -7,9 +7,10 @@ const path = require("path");
 const cartFile = "./cart.json";
 const cartFilePath = path.resolve(__dirname, cartFile);
 
-router.get("/cart", (request, response) => {
+router.get("/", (request, response) => {
 	const cartItems = fs.readFileSync(cartFilePath);
-	response.send(cartItems);
+	const cart = JSON.parse(cartItems);
+	response.send(cart);
 });
 
 // http:localhost:8080/menu/id
@@ -18,63 +19,96 @@ router.get("/:id", (request, response) => {
 	const menuItems = fs.readFileSync(cartFilePath);
 	const itemsList = JSON.parse(menuItems);
 
-	const item = itemsList.find((item) => item.id === Number(request.params.id));
+	const item = itemsList.find((item) => item.id == request.params.id);
 	response.send(item);
 });
 
-router.post("/", (request, response) => {
-	const cartItems = JSON.parse(fs.readFileSync(cartFilePath));
+router.post("/:id", (request, response) => {
+	try {
+		const cartItems = JSON.parse(fs.readFileSync(cartFilePath));
 
-	let itemExist = false;
+		let itemExist = false;
 
-	cartItems.forEach((item) => {
-		if (item.name.trim().toLowerCase() == request.body.name.trim().toLowerCase()) {
-			itemExist = true;
-			item.quantity += 1;
+		cartItems.forEach((item) => {
+			console.log(item.name + "-" + request.body.name);
+			if (item.name?.trim()?.toLowerCase() == request.body.name?.trim()?.toLowerCase()) {
+				itemExist = true;
+				item.quantity += 1;
+			}
+		});
+		if (!itemExist) {
+			const addItem = {
+				id: request.body.id,
+				name: request.body.name,
+				price: request.body.price,
+				category: request.body.category,
+				image: request.body.image,
+				quantity: 1,
+			};
+			// push/add to existing items
+			cartItems.push(addItem);
 		}
-	});
-	if (!itemExist) {
-		const addItem = {
-			id: request.body.id,
-			name: request.body.name,
-			price: request.body.price,
-			category: request.body.category,
-			image: request.body.image,
-			quantity: 1,
-		};
-		// push/add to existing items
-		cartItems.push(addItem);
+
+		// write to json file
+		fs.writeFileSync(cartFilePath, JSON.stringify(cartItems, null, 2));
+
+		response.status(201).send();
+	} catch (err) {
+		response.send(err.message);
 	}
-
-	// write to json file
-	fs.writeFileSync(cartFilePath, JSON.stringify(cartItems, null, 2));
-
-	response.status(201).send();
 });
 
-router.put("/:id", (request, response) => {
-	const itemsList = JSON.parse(fs.readFileSync(cartFilePath));
+router.put("/decrement/:id", (request, response) => {
+	try {
+		const cartItems = JSON.parse(fs.readFileSync(cartFilePath));
 
-	itemsList.forEach((item) => {
-		if (item.id === Number(request.params.id)) {
-			item.name = request.body.name;
-			item.price = request.body.price;
-			item.category = request.body.category;
-			item.image = request.body.image;
-		}
-	});
-	// console.log(itemsList);
-	fs.writeFileSync(cartFilePath, JSON.stringify(itemsList));
-	response.status(200).send();
+		cartItems.findIndex((item) => {
+			console.log(item.id + "-" + request.body.id);
+			if (item.id == request.body.id) {
+				item.quantity -= 1;
+			}
+		});
+
+		// write to json file
+		fs.writeFileSync(cartFilePath, JSON.stringify(cartItems, null, 2));
+
+		response.status(200).send();
+	} catch (err) {
+		response.send(err.message);
+	}
+});
+
+router.put("/increment/:id", (request, response) => {
+	try {
+		const cartItems = JSON.parse(fs.readFileSync(cartFilePath));
+
+		cartItems.findIndex((item) => {
+			console.log(item.id + "-" + request.body.id);
+			if (item.id == request.body.id) {
+				item.quantity += 1;
+			}
+		});
+
+		// write to json file
+		fs.writeFileSync(cartFilePath, JSON.stringify(cartItems, null, 2));
+
+		response.status(200).send();
+	} catch (err) {
+		response.send(err.message);
+	}
 });
 
 router.delete("/:id", (request, response) => {
-	const itemsList = JSON.parse(fs.readFileSync(cartFilePath));
+	try {
+		const cartList = JSON.parse(fs.readFileSync(cartFilePath));
 
-	const filteredItems = itemsList.filter((item) => item.id !== request.params.id);
+		const filteredCart = cartList.filter((item) => item.id !== request.params.id);
 
-	fs.writeFileSync(cartFilePath, JSON.stringify(filteredItems));
-	response.status(200).send();
+		fs.writeFileSync(cartFilePath, JSON.stringify(filteredCart));
+		response.status(200).send();
+	} catch (err) {
+		response.send(err.message);
+	}
 });
 
 module.exports = router;

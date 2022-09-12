@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import styles from "./ItemBox.module.css";
@@ -17,11 +18,14 @@ const NewItem = ({dispatch, hideNewItemForm}) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		dispatch({
-			type: "ADD_ITEM",
-			payload: {id: uuidv4(), ...item},
+		axios.post("http://localhost:8000/menu", item).then((response) => {
+			// console.log(response);
+			dispatch({
+				type: "ADD_ITEM",
+				payload: {id: uuidv4(), ...item},
+			});
+			setItem(item);
 		});
-		setItem("");
 	};
 
 	const onChange = (e) => {
