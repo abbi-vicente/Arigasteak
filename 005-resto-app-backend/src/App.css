@@ -14,7 +14,7 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: center;
-	gap: 10px;
+	gap: 2vh;
 	margin-top: 1vh;
 }
 Header {
@@ -130,20 +130,20 @@ footer a {
 /* Laptop Small*/
 @media only screen and (min-width: 1024px) {
 	header h2 {
-		margin-left: 80vh;
+		margin-left: 100vh;
 	}
 	nav {
-		margin-left: 20vh;
+		margin-left: 27vh;
 	}
 }
 
 /* Laptop Big*/
 @media only screen and (min-width: 1440px) {
 	header h2 {
-		margin-left: 180vh;
+		margin-left: 120vh;
 	}
 	nav {
-		margin-left: 64vh;
+		margin-left: 40vh;
 	}
 }
 

@@ -18,24 +18,22 @@ const CartItems = ({id, name, price, image, quantity, dispatch}) => {
 
 	const onRemoveFromCart = (e) => {
 		e.preventDefault();
-		axios.delete(`http://localhost:8000/cart/${removeFromCart.id}`, removeFromCart).then((response) => {
-			console.log(response);
+		axios.delete(`http://localhost:8000/cart/${id}`, removeFromCart).then((response) => {
 			dispatch({type: "DELETE_CART_ITEM", payload: {id}});
 			setRemoveFromCart("");
 		});
 	};
 
+	// decrements if > 1 and removes item from cart when <= 1
 	const onDecrement = (e) => {
 		e.preventDefault();
 		if (quantity <= 1) {
-			axios.delete(`http://localhost:8000/cart/${removeFromCart.id}`, removeFromCart).then((response) => {
-				console.log(response);
+			axios.delete(`http://localhost:8000/cart/${id}`, removeFromCart).then((response) => {
 				dispatch({type: "DELETE_CART_ITEM", payload: {id}});
 				setRemoveFromCart("");
 			});
 		} else {
-			axios.put(`http://localhost:8000/cart/decrement/${decrementCounter.id}`, decrementCounter).then((response) => {
-				console.log(response);
+			axios.put(`http://localhost:8000/cart/decrement/${id}`, decrementCounter).then((response) => {
 				dispatch({type: "DECREMENT_COUNTER", payload: {id}});
 				setDecrementCounter(decrementCounter);
 			});
@@ -45,7 +43,6 @@ const CartItems = ({id, name, price, image, quantity, dispatch}) => {
 	const onIncrement = (e) => {
 		e.preventDefault();
 		axios.put(`http://localhost:8000/cart/increment/${incrementCounter.id}`, incrementCounter).then((response) => {
-			console.log(response);
 			dispatch({type: "INCREMENT_COUNTER", payload: {id}});
 			setIncrementCounter(incrementCounter);
 		});

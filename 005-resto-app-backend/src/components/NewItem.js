@@ -11,27 +11,33 @@ const NewItem = ({dispatch, hideNewItemForm}) => {
 		image: "",
 	});
 
+	// hides form on cancel
 	const cancelItem = (e) => {
 		e.preventDefault();
 		hideNewItemForm(false);
 	};
 
+	// adds new menu item, alerts and prevents duplicates and empty input
 	const onSubmit = (e) => {
 		e.preventDefault();
-		axios.post("http://localhost:8000/menu", item).then((response) => {
-			// console.log(response);
-			dispatch({
-				type: "ADD_ITEM",
-				payload: {id: uuidv4(), ...item},
+
+		if (item.name.length <= 0 && item.name.trim() !== "") {
+			axios.post("http://localhost:8000/menu", item).then((response) => {
+				dispatch({
+					type: "ADD_ITEM",
+					payload: {id: uuidv4(), ...item},
+				});
+				setItem(item);
 			});
-			setItem(item);
-		});
+		} else if (item.name.trim() == "") {
+			alert("Please add an item.");
+		} else {
+			alert("It's already on your list.");
+		}
 	};
 
 	const onChange = (e) => {
-		console.log(e.target.name);
 		const inputName = e.target.name;
-
 		switch (inputName) {
 			case "name":
 				setItem({

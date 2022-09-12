@@ -71,11 +71,8 @@ router.put("/:id", (request, response) => {
 			}
 		});
 
-		// console.log(itemsList);
 		fs.writeFileSync(menuFilePath, JSON.stringify(itemsList, null, 2));
 		fs.writeFileSync(cartFilePath, JSON.stringify(cartList, null, 2));
-		// console.log(itemsList);
-		// console.log(cartList);
 		response.status(200).send();
 	} catch (err) {
 		response.send(err.message);

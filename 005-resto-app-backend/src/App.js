@@ -3,7 +3,6 @@ import React, {useEffect, useReducer} from "react";
 import ItemBox from "./components/ItemBox";
 import FilterCartItem from "./components/FilterCartItem";
 import NewItem from "./components/NewItem";
-import {v4 as uuidv4} from "uuid";
 import EditItemForm from "./components/EditItemForm";
 import CartItems from "./components/CartItems";
 import {Routes, Route} from "react-router";
@@ -12,52 +11,7 @@ import axios from "axios";
 
 const App = () => {
 	const initialState = {
-		items: [
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Dry Aged Prime Rib",
-			// 	price: 450,
-			// 	category: "Food",
-			// 	image:
-			// 		"https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/217554287_328305238918438_543284701030730607_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a26aad&_nc_ohc=dEDrGor-nhAAX-uDgB5&tn=0RvgyDXAxf3ujckz&_nc_ht=scontent.fmnl17-2.fna&oh=00_AT9jPNr5SzdhTQIL03MXWDypeT3JEzAQ5SLrXuGHpAfyJg&oe=631ED674",
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Wagyu Burger",
-			// 	price: 250,
-			// 	category: "Food",
-			// 	image: "https://bit.ly/3pFH1NA",
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Surf & Turf",
-			// 	price: 1050,
-			// 	category: "Food",
-			// 	image: "https://bit.ly/3dJZeXo",
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Wagyu Cubes",
-			// 	price: 150,
-			// 	category: "Appetizer",
-			// 	image:
-			// 		"https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1024,h_768/https://happyandbusytravels.com/wp-content/uploads/2021/06/The-Steak-Cartel-Calamba-Laguna-17-Wagyu-Skewers-Happy-and-Busy-Travels.jpeg",
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Japanese Highball",
-			// 	price: 95,
-			// 	category: "Drink",
-			// 	image: "https://bit.ly/3PTnHqG",
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Mochi Ice Cream",
-			// 	price: 60,
-			// 	category: "Dessert",
-			// 	image: "https://bit.ly/3dX7wLN",
-			// },
-		],
+		items: [],
 		item: "",
 		price: "",
 		category: "",
@@ -78,25 +32,26 @@ const App = () => {
 		},
 	};
 
+	// gets the initial data (menu and cart items) from backend
 	useEffect(() => {
 		axios.get("http://localhost:8000/menu", state.items).then((response) => {
-			// console.log(response);
 			dispatch({type: "LOAD_ITEMS", payload: response.data});
 		});
 		axios.get("http://localhost:8000/cart", state.cartItem).then((response) => {
-			// console.log(response);
 			dispatch({type: "LOAD_CART", payload: response.data});
 		});
 	}, []);
 
 	const reducer = (state, action) => {
 		switch (action.type) {
+			// menu items
 			case "LOAD_ITEMS": {
 				return {
 					...state,
 					items: action.payload,
 				};
 			}
+			// cart items
 			case "LOAD_CART": {
 				return {
 					...state,
@@ -294,7 +249,6 @@ const App = () => {
 			))
 		);
 
-	// console.log(state.items);
 	return (
 		<div className="App">
 			<header>

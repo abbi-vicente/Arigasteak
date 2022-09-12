@@ -1,12 +1,5 @@
 [
   {
-    "id": "1",
-    "name": "Prime USDA Ribeye",
-    "price": 450,
-    "category": "Food",
-    "image": "https://lemiapp.com/api/v3/fullsize?url=https://lemiapp.com/uploads/picture-1620781250111"
-  },
-  {
     "id": "2",
     "name": "Wagyu Burger",
     "price": 300,

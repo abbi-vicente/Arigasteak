@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const {v4: uuidv4} = require("uuid");
 const fs = require("fs");
 const path = require("path");
 
@@ -15,7 +14,6 @@ router.get("/", (request, response) => {
 
 // http:localhost:8080/menu/id
 router.get("/:id", (request, response) => {
-	// console.log(request.params.id);
 	const menuItems = fs.readFileSync(cartFilePath);
 	const itemsList = JSON.parse(menuItems);
 
@@ -30,7 +28,6 @@ router.post("/:id", (request, response) => {
 		let itemExist = false;
 
 		cartItems.forEach((item) => {
-			console.log(item.name + "-" + request.body.name);
 			if (item.name?.trim()?.toLowerCase() == request.body.name?.trim()?.toLowerCase()) {
 				itemExist = true;
 				item.quantity += 1;
@@ -58,12 +55,12 @@ router.post("/:id", (request, response) => {
 	}
 });
 
+// for decrement button
 router.put("/decrement/:id", (request, response) => {
 	try {
 		const cartItems = JSON.parse(fs.readFileSync(cartFilePath));
 
 		cartItems.findIndex((item) => {
-			console.log(item.id + "-" + request.body.id);
 			if (item.id == request.body.id) {
 				item.quantity -= 1;
 			}
@@ -78,12 +75,12 @@ router.put("/decrement/:id", (request, response) => {
 	}
 });
 
+// for increment button
 router.put("/increment/:id", (request, response) => {
 	try {
 		const cartItems = JSON.parse(fs.readFileSync(cartFilePath));
 
 		cartItems.findIndex((item) => {
-			console.log(item.id + "-" + request.body.id);
 			if (item.id == request.body.id) {
 				item.quantity += 1;
 			}

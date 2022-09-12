@@ -44,11 +44,10 @@ const EditItemForm = ({details, hideEditItemForm, dispatch}) => {
 		}
 	};
 
-	// how to change in json file huhu
+	// updates item details on save in menu and in cart
 	const onEditItem = (e) => {
 		e.preventDefault();
 		axios.put(`http://localhost:8000/menu/${editItem.id}`, editItem).then((response) => {
-			console.log(response);
 			dispatch({
 				type: "SAVE_CHANGES",
 				payload: {...editItem},
@@ -57,7 +56,6 @@ const EditItemForm = ({details, hideEditItemForm, dispatch}) => {
 			hideEditItemForm(false);
 
 			axios.put(`http://localhost:8000/cart/${editItem.id}`, editItem).then((response) => {
-				console.log(response);
 				dispatch({
 					type: "SAVE_CHANGES",
 					payload: {...editItem},
