@@ -14,7 +14,7 @@ const displayById = (request, response) => {
 	const menuItems = fs.readFileSync(menuFilePath);
 	const itemsList = JSON.parse(menuItems);
 
-	const item = itemsList.find((item) => item.id === Number(request.params.id));
+	const item = itemsList.find((item) => item.id === request.params.id);
 	response.send(item);
 };
 
