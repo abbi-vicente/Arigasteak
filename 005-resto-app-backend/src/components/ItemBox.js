@@ -18,6 +18,7 @@ const ItemBox = ({id, name, price, image, quantity, showEditItemForm, editItem, 
 	const onAddToCart = (e) => {
 		e.preventDefault();
 		axios.post(`http://localhost:8000/cart/${id}`, addToCart).then((response) => {
+			console.log(response);
 			dispatch({type: "ADD_TO_CART", payload: {id, name, price, image, quantity}});
 			setAddToCart(addToCart);
 		});
@@ -26,11 +27,11 @@ const ItemBox = ({id, name, price, image, quantity, showEditItemForm, editItem, 
 	// deletes items in menu and in cart
 	const onDelete = (e) => {
 		e.preventDefault();
-		axios.delete(`http://localhost:8000/menu/${deleteItem.id}`, deleteItem).then((response) => {
+		axios.delete(`http://localhost:8000/menu/${id}`, deleteItem).then((response) => {
 			dispatch({type: "DELETE_ITEM", payload: {id}});
 			setDeleteItem("");
 
-			axios.delete(`http://localhost:8000/cart/${deleteItem.id}`, deleteItem).then((response) => {
+			axios.delete(`http://localhost:8000/cart/${id}`, deleteItem).then((response) => {
 				dispatch({type: "DELETE_CART_ITEM", payload: {id}});
 				setDeleteItem("");
 			});
