@@ -1,58 +1,37 @@
 [
-	{
-		"id": "1",
-		"name": "Prime USDA Ribeye",
-		"price": 450,
-		"category": "Food",
-		"image": "https://lemiapp.com/api/v3/fullsize?url=https://lemiapp.com/uploads/picture-1620781250111"
-	},
-	{
-		"id": "2",
-		"name": "Wagyu Burger",
-		"price": 300,
-		"category": "Food",
-		"image": "https://bit.ly/3pFH1NA"
-	},
-	{
-		"id": "3",
-		"name": "Surf & Turf",
-		"price": 1050,
-		"category": "Food",
-		"image": "https://bit.ly/3dJZeXo"
-	},
-	{
-		"id": "4",
-		"name": "Wagyu Cubes",
-		"price": 150,
-		"category": "Appetizer",
-		"image": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1024,h_768/https://happyandbusytravels.com/wp-content/uploads/2021/06/The-Steak-Cartel-Calamba-Laguna-17-Wagyu-Skewers-Happy-and-Busy-Travels.jpeg"
-	},
-	{
-		"id": "5",
-		"name": "Japanese Highball",
-		"price": 95,
-		"category": "Drink",
-		"image": "https://bit.ly/3PTnHqG"
-	},
-	{
-		"id": "6",
-		"name": "Mochi Ice Cream",
-		"price": 60,
-		"category": "Dessert",
-		"image": "https://bit.ly/3dX7wLN"
-	},
-	{
-		"id": "eccfe488-fdfe-475f-9f4b-2a9c85e87a60",
-		"name": "Ramen Ribeye",
-		"price": 1200,
-		"category": "Food",
-		"image": "https://cdn.shopify.com/s/files/1/0557/8545/5765/files/RIBEYE_STEAK_SQ_480x480.jpg?v=1649198645"
-	},
-	{
-		"id": "a78e76a7-5af1-45d9-8264-77fe8edc804c",
-		"name": "Kakigori",
-		"price": 215,
-		"category": "Dessert",
-		"image": "https://arigatotravel.com/wp-content/uploads/2020/08/matcha-kakigori.jpg"
-	}
+  {
+    "id": "4",
+    "name": "Wagyu Cubes",
+    "price": 150,
+    "category": "Appetizer",
+    "image": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1024,h_768/https://happyandbusytravels.com/wp-content/uploads/2021/06/The-Steak-Cartel-Calamba-Laguna-17-Wagyu-Skewers-Happy-and-Busy-Travels.jpeg"
+  },
+  {
+    "id": "5",
+    "name": "Japanese Highball",
+    "price": 95,
+    "category": "Drink",
+    "image": "https://bit.ly/3PTnHqG"
+  },
+  {
+    "id": "6",
+    "name": "Mochi Ice Cream",
+    "price": 60,
+    "category": "Dessert",
+    "image": "https://bit.ly/3dX7wLN"
+  },
+  {
+    "id": "a78e76a7-5af1-45d9-8264-77fe8edc804c",
+    "name": "Kakigori",
+    "price": 215,
+    "category": "Dessert",
+    "image": "https://arigatotravel.com/wp-content/uploads/2020/08/matcha-kakigori.jpg"
+  },
+  {
+    "id": "b2a80f9f-8aed-4f51-9176-e2dda9f4603a",
+    "name": "Ribeye Steak Ramen",
+    "price": 300,
+    "category": "Food",
+    "image": "https://cdn.shopify.com/s/files/1/0557/8545/5765/files/RIBEYE_STEAK_SQ_480x480.jpg?v=1649198645"
+  }
 ]

@@ -55,8 +55,6 @@ const editItems = (request, response) => {
 			}
 		});
 		cartList.forEach((item) => {
-			console.log(item.id + "-" + request.params.id);
-
 			if (item.id == request.params.id) {
 				item.name = request.body.name;
 				item.price = request.body.price;
