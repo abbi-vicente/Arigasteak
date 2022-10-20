@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./ItemBox.module.css";
 import axios from "axios";
 
-const CartItems = ({id, name, price, image, quantity, dispatch}) => {
+const CartItems = ({ id, name, price, image, quantity, dispatch }) => {
 	const [removeFromCart, setRemoveFromCart] = useState({
 		id,
 	});
@@ -19,7 +19,7 @@ const CartItems = ({id, name, price, image, quantity, dispatch}) => {
 	const onRemoveFromCart = (e) => {
 		e.preventDefault();
 		axios.delete(`http://localhost:8000/cart/${id}`, removeFromCart).then((response) => {
-			dispatch({type: "DELETE_CART_ITEM", payload: {id}});
+			dispatch({ type: "DELETE_CART_ITEM", payload: { id } });
 			setRemoveFromCart("");
 		});
 	};
@@ -29,12 +29,12 @@ const CartItems = ({id, name, price, image, quantity, dispatch}) => {
 		e.preventDefault();
 		if (quantity <= 1) {
 			axios.delete(`http://localhost:8000/cart/${id}`, removeFromCart).then((response) => {
-				dispatch({type: "DELETE_CART_ITEM", payload: {id}});
+				dispatch({ type: "DELETE_CART_ITEM", payload: { id } });
 				setRemoveFromCart("");
 			});
 		} else {
 			axios.put(`http://localhost:8000/cart/decrement/${id}`, decrementCounter).then((response) => {
-				dispatch({type: "DECREMENT_COUNTER", payload: {id}});
+				dispatch({ type: "DECREMENT_COUNTER", payload: { id } });
 				setDecrementCounter(decrementCounter);
 			});
 		}
@@ -43,7 +43,7 @@ const CartItems = ({id, name, price, image, quantity, dispatch}) => {
 	const onIncrement = (e) => {
 		e.preventDefault();
 		axios.put(`http://localhost:8000/cart/increment/${incrementCounter.id}`, incrementCounter).then((response) => {
-			dispatch({type: "INCREMENT_COUNTER", payload: {id}});
+			dispatch({ type: "INCREMENT_COUNTER", payload: { id } });
 			setIncrementCounter(incrementCounter);
 		});
 	};
