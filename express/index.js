@@ -20,6 +20,10 @@ app.get("/", (request, response) => {
 	response.send("Hello from the server side!");
 });
 
+app.get("/greeting", (request, response) => {
+	response.json("Hello!");
+});
+
 app.use("/cart", cartRouter);
 app.use("/menu", menuRouter);
 
