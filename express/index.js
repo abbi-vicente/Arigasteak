@@ -23,6 +23,6 @@ app.get("/", (request, response) => {
 app.use("/cart", cartRouter);
 app.use("/menu", menuRouter);
 
-app.listen(port, () => {
+app.listen(process.env.port, () => {
 	console.log(`Express server running on port ${port}`);
 });
