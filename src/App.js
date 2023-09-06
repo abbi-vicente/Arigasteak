@@ -1,12 +1,12 @@
 import "./App.css";
-import React, {useEffect, useReducer} from "react";
+import React, { useEffect, useReducer } from "react";
 import ItemBox from "./components/ItemBox";
 import FilterCartItem from "./components/FilterCartItem";
 import NewItem from "./components/NewItem";
 import EditItemForm from "./components/EditItemForm";
 import CartItems from "./components/CartItems";
-import {Routes, Route} from "react-router";
-import {Link} from "react-router-dom";
+import { Routes, Route } from "react-router";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const App = () => {
@@ -35,10 +35,10 @@ const App = () => {
 	// gets the initial data (menu and cart items) from backend
 	useEffect(() => {
 		axios.get("http://localhost:8000/menu", state.items).then((response) => {
-			dispatch({type: "LOAD_ITEMS", payload: response.data});
+			dispatch({ type: "LOAD_ITEMS", payload: response.data });
 		});
 		axios.get("http://localhost:8000/cart", state.cartItem).then((response) => {
-			dispatch({type: "LOAD_CART", payload: response.data});
+			dispatch({ type: "LOAD_CART", payload: response.data });
 		});
 	}, []);
 
@@ -97,12 +97,12 @@ const App = () => {
 				});
 				const saveCartChanges = state.cartItem.map((item) => {
 					if (item.id === action.payload.id) {
-						return {...item, ...action.payload};
+						return { ...item, ...action.payload };
 					}
 					return item;
 				});
 
-				return {...state, items: saveChanges, cartItem: saveCartChanges};
+				return { ...state, items: saveChanges, cartItem: saveCartChanges };
 			}
 			case "DELETE_ITEM": {
 				return {
@@ -116,12 +116,12 @@ const App = () => {
 					return action.payload.id === item.id;
 				});
 				if (cartIndex <= -1) {
-					cartCopy.push({...action.payload, quantity: 1});
+					cartCopy.push({ ...action.payload, quantity: 1 });
 				} else {
 					cartCopy[cartIndex].quantity = cartCopy[cartIndex].quantity + 1;
 				}
 				const cartTotal = state.cartTotal + action.payload.price;
-				return {...state, cartTotal, cartItem: cartCopy};
+				return { ...state, cartTotal, cartItem: cartCopy };
 			}
 			case "INCREMENT_COUNTER": {
 				const cartCopy = [...state.cartItem];
@@ -134,7 +134,7 @@ const App = () => {
 
 				const cartTotal = state.cartTotal + cartCopy[cartIndex].price;
 
-				return {...state, cartItem: [...cartCopy], cartTotal};
+				return { ...state, cartItem: [...cartCopy], cartTotal };
 			}
 			case "DECREMENT_COUNTER": {
 				const cartCopy = [...state.cartItem];
@@ -150,7 +150,7 @@ const App = () => {
 					cartCopy.splice(cartIndex, 1);
 				}
 
-				return {...state, cartItem: [...cartCopy], cartTotal};
+				return { ...state, cartItem: [...cartCopy], cartTotal };
 			}
 			case "DELETE_CART_ITEM": {
 				return {
@@ -174,7 +174,7 @@ const App = () => {
 	}, []);
 
 	const filterCategory = (category) => {
-		dispatch({type: "SET_CATEGORY", payload: category});
+		dispatch({ type: "SET_CATEGORY", payload: category });
 	};
 
 	let filteredItems =
@@ -186,26 +186,26 @@ const App = () => {
 
 	const showAddItemForm = () => {
 		state.newItem
-			? dispatch({type: "SHOW_NEW_FORM", payload: false})
-			: dispatch({type: "SHOW_NEW_FORM", payload: true});
+			? dispatch({ type: "SHOW_NEW_FORM", payload: false })
+			: dispatch({ type: "SHOW_NEW_FORM", payload: true });
 	};
 
 	const showEditItemForm = (status, id) => {
 		state.editItem
-			? dispatch({type: "SHOW_EDIT_FORM", payload: false})
-			: dispatch({type: "SHOW_EDIT_FORM", payload: status});
+			? dispatch({ type: "SHOW_EDIT_FORM", payload: false })
+			: dispatch({ type: "SHOW_EDIT_FORM", payload: status });
 
 		const indexOfItem = state.items.findIndex((item) => item.id === id);
 		const listItems = [...state.items];
-		dispatch({type: "EDIT_ITEM_DETAIL", payload: listItems.splice(indexOfItem, 1)});
+		dispatch({ type: "EDIT_ITEM_DETAIL", payload: listItems.splice(indexOfItem, 1) });
 	};
 
 	const hideNewItemForm = (status) => {
-		dispatch({type: "SHOW_NEW_FORM", payload: status});
+		dispatch({ type: "SHOW_NEW_FORM", payload: status });
 	};
 
 	const hideEditItemForm = (status) => {
-		dispatch({type: "SHOW_EDIT_FORM", payload: status});
+		dispatch({ type: "SHOW_EDIT_FORM", payload: status });
 	};
 
 	const getCartTotal = () => {

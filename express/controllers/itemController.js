@@ -1,4 +1,4 @@
-const {v4: uuidv4} = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const menuFilePath = "./routes/menu.json";
 const cartFilePath = "./routes/cart.json";

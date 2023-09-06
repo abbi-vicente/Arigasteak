@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, {useState} from "react";
-import {v4 as uuidv4} from "uuid";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./ItemBox.module.css";
 
-const NewItem = ({dispatch, hideNewItemForm}) => {
+const NewItem = ({ dispatch, hideNewItemForm }) => {
 	const [item, setItem] = useState({
 		name: "",
 		price: "",
@@ -25,7 +25,7 @@ const NewItem = ({dispatch, hideNewItemForm}) => {
 			axios.post("http://localhost:8000/menu", item).then((response) => {
 				dispatch({
 					type: "ADD_ITEM",
-					payload: {id: uuidv4(), ...item},
+					payload: { id: uuidv4(), ...item },
 				});
 				setItem(item);
 			});

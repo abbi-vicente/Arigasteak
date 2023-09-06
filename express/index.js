@@ -10,11 +10,7 @@ app.use(bodyParser.json());
 const cartRouter = require("./routes/cart");
 const menuRouter = require("./routes/menu");
 
-app.use(
-	cors({
-		origin: "*",
-	})
-);
+app.use(cors());
 
 app.get("/", (request, response) => {
 	response.send("Hello from the server side!");
@@ -27,6 +23,6 @@ app.get("/greeting", (request, response) => {
 app.use("/cart", cartRouter);
 app.use("/menu", menuRouter);
 
-app.listen(process.env.port, () => {
+app.listen(port, () => {
 	console.log(`Express server running on port ${port}`);
 });
